@@ -1,12 +1,14 @@
 package com.jbhunt.gis.enterprise.mileage.services;
 
-import com.jbhunt.gis.enterprise.mileage.DTO.MilesDTO;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import com.jbhunt.gis.enterprise.mileage.DTO.MilesDTO;
+import com.jbhunt.gis.enterprise.mileage.DTO.RequestDTO;
+
+@Service
 public class MileageServiceImpl implements MileageService {
 
-    public MilesDTO calculateMiles(){
-        return new MilesDTO();
+    public MilesDTO calculateMiles(RequestDTO requestDTO){
+        return new MilesDTO(requestDTO.getInput(),"1000");
     }
 }
