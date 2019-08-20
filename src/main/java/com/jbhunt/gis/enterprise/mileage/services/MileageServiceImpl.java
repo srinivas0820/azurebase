@@ -1,7 +1,5 @@
 package com.jbhunt.gis.enterprise.mileage.services;
 
-import java.util.function.Function;
-
 import org.springframework.stereotype.Service;
 
 import com.jbhunt.gis.enterprise.mileage.DTO.MilesDTO;
@@ -18,5 +16,4 @@ public class MileageServiceImpl implements MileageService {
     	}
    
     }
-
 }

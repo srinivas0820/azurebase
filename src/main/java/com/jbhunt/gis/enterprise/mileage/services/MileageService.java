@@ -6,5 +6,4 @@ import com.jbhunt.gis.enterprise.mileage.DTO.RequestDTO;
 public interface MileageService {
 
     public MilesDTO calculateMiles(RequestDTO requestDTO);
-
 }
