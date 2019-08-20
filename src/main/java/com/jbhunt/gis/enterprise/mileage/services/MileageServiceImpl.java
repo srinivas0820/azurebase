@@ -9,7 +9,7 @@ import com.jbhunt.gis.enterprise.mileage.DTO.RequestDTO;
 public class MileageServiceImpl implements MileageService {
 
     public MilesDTO calculateMiles(RequestDTO requestDTO){
-    	if(requestDTO!=null) {
+    	if(requestDTO.getInput()!=null) {
     	     return new MilesDTO(requestDTO.getInput(),"1000");
     	}else {
     	     return new MilesDTO("100","1000");

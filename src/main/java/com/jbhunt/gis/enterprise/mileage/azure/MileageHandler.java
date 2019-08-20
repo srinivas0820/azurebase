@@ -22,7 +22,7 @@ public class MileageHandler extends AzureSpringBootRequestHandler<RequestDTO,Mil
     	if(request.getBody().isPresent()) {
     		 return handleRequest(request.getBody().get(), context);
     	}else {
-    		return new MilesDTO("100", "100000");
+    		 return handleRequest(new RequestDTO(), context);
     	}
        
     }
