@@ -2,10 +2,11 @@ package com.jbhunt.gis.enterprise.mileage.azure;
 
 import java.util.Optional;
 
-import org.springframework.cloud.function.adapter.azure.AzureSpringBootRequestHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jbhunt.gis.enterprise.mileage.DTO.MilesDTO;
 import com.jbhunt.gis.enterprise.mileage.DTO.RequestDTO;
+import com.jbhunt.gis.enterprise.mileage.services.MileageService;
 import com.microsoft.azure.functions.ExecutionContext;
 import com.microsoft.azure.functions.HttpMethod;
 import com.microsoft.azure.functions.HttpRequestMessage;
@@ -13,17 +14,16 @@ import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 
-public class MileageHandler extends AzureSpringBootRequestHandler<RequestDTO,MilesDTO> {
+public class MileageController{
 
-    @FunctionName("miles")
+	@Autowired
+	private MileageService mileageService;
+	
+    @FunctionName("getMiles")
     public MilesDTO execute(
-            @HttpTrigger(name = "request", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<RequestDTO>> request,
+            @HttpTrigger(name = "request", methods = {HttpMethod.GET, HttpMethod.POST}, route = "milesPost", authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<RequestDTO>> request,
             ExecutionContext context) {
-    	if(request.getBody().isPresent()) {
-    		 return handleRequest(request.getBody().get(), context);
-    	}else {
-    		return new MilesDTO("100", "100000");
-    	}
-       
+    	System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>"+mileageService);
+    	return mileageService.calculateMiles(request.getBody().get());
     }
 }
