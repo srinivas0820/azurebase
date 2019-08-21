@@ -12,7 +12,8 @@ public class MileageServiceImpl implements MileageService {
 		ResponseDTO responseDTO = new ResponseDTO();
 		if (requestDTO != null) {
 			responseDTO.setMessage("SUCCESS");
-			responseDTO.setResponseBody(requestDTO.toString());
+			responseDTO.setResponseBody("The distance between " + requestDTO.getOriginStop() + " and "
+					+ requestDTO.getDestinationStop() + " is 750 miles.");
 		} else {
 			responseDTO.setMessage("No Input provided.");
 		}
