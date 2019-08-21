@@ -2,18 +2,20 @@ package com.jbhunt.gis.enterprise.mileage.services;
 
 import org.springframework.stereotype.Service;
 
-import com.jbhunt.gis.enterprise.mileage.DTO.MilesDTO;
 import com.jbhunt.gis.enterprise.mileage.DTO.RequestDTO;
+import com.jbhunt.gis.enterprise.mileage.DTO.ResponseDTO;
 
 @Service
 public class MileageServiceImpl implements MileageService {
 
-    public MilesDTO calculateMiles(RequestDTO requestDTO){
-    	if(requestDTO.getInput()!=null) {
-    	     return new MilesDTO(requestDTO.getInput(),"1000");
-    	}else {
-    	     return new MilesDTO("100","1000");
-    	}
-   
-    }
+	public ResponseDTO calculateMiles(RequestDTO requestDTO) {
+		ResponseDTO responseDTO = new ResponseDTO();
+		if (requestDTO != null) {
+			responseDTO.setMessage("SUCCESS");
+			responseDTO.setResponseBody(requestDTO.toString());
+		} else {
+			responseDTO.setMessage("No Input provided.");
+		}
+		return responseDTO;
+	}
 }
